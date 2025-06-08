@@ -4,6 +4,16 @@ public class Person {
     private String name;
     private Integer age;
 
+    private Integer sex;
+
+    public Integer getSex() {
+        return sex;
+    }
+
+    public void setSex(Integer sex) {
+        this.sex = sex;
+    }
+
     public String getName() {
         return name;
     }
@@ -20,17 +30,19 @@ public class Person {
         this.age = age;
     }
 
-    @Override
-    public String toString() {
-        return "person{" +
+    @java.lang.Override
+    public java.lang.String toString() {
+        return "Person{" +
                 "name='" + name + '\'' +
                 ", age=" + age +
+                ", sex=" + sex +
                 '}';
     }
 
-    public Person(String name, Integer age) {
+    public Person(String name, Integer age, Integer sex) {
         this.name = name;
         this.age = age;
+        this.sex = sex;
     }
 
     public Person() {
