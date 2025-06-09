@@ -1,10 +1,22 @@
 package com.chuntang.coinfig;
 
+import com.chuntang.bean.Color;
 import com.chuntang.bean.Person;
+import com.chuntang.bean.Red;
+import com.chuntang.condition.LinuxCondition;
+import com.chuntang.condition.MyImoprtSelect;
+import com.chuntang.condition.MyImportBeanDefinitionRegistrar;
+import com.chuntang.condition.WindowsConditon;
 import org.springframework.context.annotation.*;
+import org.springframework.stereotype.Component;
+import org.springframework.stereotype.Repository;
+import org.springframework.stereotype.Service;
 
 //配置类==配置文件
+//类中组件统一设置：满足当前条件，这个类中配置的所有bean才能生效
+@Conditional({WindowsConditon.class})
 @Configuration  //告诉spring这个个配置类
+@Import({Color.class, Red.class, MyImoprtSelect.class, MyImportBeanDefinitionRegistrar.class}) //导入组件默认id时组件的全类名
 public class MainConfig2 {
 
 
@@ -25,6 +37,34 @@ public class MainConfig2 {
     @Bean(value = "Person")  //给容器中注册一个bean  类型为返回值的类型  id默认用方法名作为id（原来用xml配置时有类型和id ）
     public Person person(){
         System.out.println("给容器中添加Person....");
-        return new Person("zhangsan",25);
+        return new Person("zhangsan",25,"男");
     }
+
+
+    /*
+     *@Conditional({Condition}) 按照一定条件进行判断，满足条件给容器中注册bean
+     * 如果系统是windows给容器注册Bill
+     * 如果是linux给容器注册linus
+     * */
+    @Conditional({WindowsConditon.class})
+    @Bean(value = "bill")
+    public Person person01(){
+        return new Person("Bill Gates",58,"男");
+    }
+    @Conditional({LinuxCondition.class})
+    @Bean(value = "linus")
+    public Person person02(){
+        return new Person("linus",50,"男");
+    }
+
+    /*
+    *给容器中注册组件
+    * 1.包扫描+组件标注注解（@Controller，@Service,@Repository,@Component）
+    * 2.@Bean[导入第三方包里面的组件]
+    * 3.@Import[快速的给容器中导入一个组件]
+    *     (1)@Import({直接写要导入的容器的组件})：容器中就会注册这个组件，id默认是全类名
+    *     (2)ImportSelector:返回需要导入的组件的全类名数组
+    *     (3)ImportBeanDefinitionRegistrar:手动注册bean到register中
+     */
+
 }

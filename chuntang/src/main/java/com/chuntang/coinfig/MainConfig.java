@@ -1,7 +1,6 @@
 package com.chuntang.coinfig;
 
 import com.chuntang.bean.Person;
-import com.chuntang.service.BookService;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
@@ -28,6 +27,6 @@ public class MainConfig {
 
     @Bean(value = "Person")  //给容器中注册一个bean  类型为返回值的类型  id默认用方法名作为id（原来用xml配置时有类型和id ）
     public Person person01(){
-        return new Person("lisi",20);
+        return new Person("lisi",20,"男");
     }
 }

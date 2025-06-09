@@ -4,13 +4,13 @@ public class Person {
     private String name;
     private Integer age;
 
-    private Integer sex;
+    private String sex;
 
-    public Integer getSex() {
+    public String getSex() {
         return sex;
     }
 
-    public void setSex(Integer sex) {
+    public void setSex(String sex) {
         this.sex = sex;
     }
 
@@ -39,7 +39,7 @@ public class Person {
                 '}';
     }
 
-    public Person(String name, Integer age, Integer sex) {
+    public Person(String name, Integer age, String sex) {
         this.name = name;
         this.age = age;
         this.sex = sex;
