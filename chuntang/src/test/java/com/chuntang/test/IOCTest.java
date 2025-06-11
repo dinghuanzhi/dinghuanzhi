@@ -1,6 +1,7 @@
 package com.chuntang.test;
 
 import com.chuntang.bean.Blue;
+import com.chuntang.bean.ColorFactoryBean;
 import com.chuntang.bean.Person;
 import com.chuntang.coinfig.MainConfig;
 import com.chuntang.coinfig.MainConfig2;
@@ -18,7 +19,13 @@ public class IOCTest {
     public void testImport(){
        printBeans(applicationContext);
        Blue bean = applicationContext.getBean(Blue.class);
-       System.out.println(bean);
+       //System.out.println(bean);
+       Object colorFactoryBean = applicationContext.getBean("colorFactoryBean");
+       Object colorFactoryBean2 = applicationContext.getBean("colorFactoryBean");
+       System.out.println("bean的类型"+colorFactoryBean.getClass());
+       System.out.println(colorFactoryBean==colorFactoryBean2);
+       Object colorFactoryBean3 = applicationContext.getBean("&colorFactoryBean");
+       System.out.println("colorFactoryBean3的类型"+colorFactoryBean3.getClass());
    }
     private void printBeans(AnnotationConfigApplicationContext applicationContext){
         String[] beanDefinitionNames = applicationContext.getBeanDefinitionNames();

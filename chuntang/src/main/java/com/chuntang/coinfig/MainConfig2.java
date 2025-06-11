@@ -1,6 +1,7 @@
 package com.chuntang.coinfig;
 
 import com.chuntang.bean.Color;
+import com.chuntang.bean.ColorFactoryBean;
 import com.chuntang.bean.Person;
 import com.chuntang.bean.Red;
 import com.chuntang.condition.LinuxCondition;
@@ -65,6 +66,12 @@ public class MainConfig2 {
     *     (1)@Import({直接写要导入的容器的组件})：容器中就会注册这个组件，id默认是全类名
     *     (2)ImportSelector:返回需要导入的组件的全类名数组
     *     (3)ImportBeanDefinitionRegistrar:手动注册bean到register中
+    * 4.spring提供的FactoryBean（工厂bean）
+    *     （1）默认获取到的是工厂bean调用getObject方法创建的对象
+    *      (2)要获取工厂bean本身则需要在id前面加一个&标识 例如&colorFactoryBean
      */
-
+    @Bean
+    public ColorFactoryBean colorFactoryBean(){
+        return new ColorFactoryBean();
+    }
 }
